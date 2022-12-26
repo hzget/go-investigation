@@ -1,3 +1,10 @@
+/*
+This file shows how to use benchmark testing.
+
+Once you update a function, run a benchmark testing.
+Compare the output via benchstat, you got the changes
+of performance.
+*/
 package ltest
 
 func FibRecursion(n int) int {
@@ -17,4 +24,9 @@ func FibIteration(n int) int {
 		x, y = y, x+y
 	}
 	return y
+}
+
+func Fib(n int) int {
+	// return FibRecursion(n)
+	return FibIteration(n)
 }

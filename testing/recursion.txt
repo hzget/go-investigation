@@ -1,0 +1,61 @@
+goos: windows
+goarch: amd64
+pkg: ltest
+cpu: Intel(R) Core(TM) i5-7200U CPU @ 2.50GHz
+BenchmarkFib
+BenchmarkFib/(N=2)
+BenchmarkFib/(N=2)-4         	249628468	         5.154 ns/op
+BenchmarkFib/(N=2)-4         	242157721	         4.897 ns/op
+BenchmarkFib/(N=2)-4         	232577385	         4.966 ns/op
+BenchmarkFib/(N=2)-4         	242019360	         4.989 ns/op
+BenchmarkFib/(N=2)-4         	227979549	         4.971 ns/op
+BenchmarkFib/(N=3)
+BenchmarkFib/(N=3)-4         	146034559	         8.311 ns/op
+BenchmarkFib/(N=3)-4         	144614013	         8.484 ns/op
+BenchmarkFib/(N=3)-4         	146286284	         8.578 ns/op
+BenchmarkFib/(N=3)-4         	145738868	         8.480 ns/op
+BenchmarkFib/(N=3)-4         	142639752	         8.625 ns/op
+BenchmarkFib/(N=4)
+BenchmarkFib/(N=4)-4         	100000000	        15.57 ns/op
+BenchmarkFib/(N=4)-4         	100000000	        15.11 ns/op
+BenchmarkFib/(N=4)-4         	100000000	        15.28 ns/op
+BenchmarkFib/(N=4)-4         	77153230	        15.24 ns/op
+BenchmarkFib/(N=4)-4         	100000000	        14.99 ns/op
+BenchmarkFib/(N=5)
+BenchmarkFib/(N=5)-4         	59650744	        25.16 ns/op
+BenchmarkFib/(N=5)-4         	59465995	        25.68 ns/op
+BenchmarkFib/(N=5)-4         	47195304	        24.85 ns/op
+BenchmarkFib/(N=5)-4         	47763588	        25.87 ns/op
+BenchmarkFib/(N=5)-4         	59261014	        25.78 ns/op
+BenchmarkFib/(N=10)
+BenchmarkFib/(N=10)-4        	 3914232	       323.3 ns/op
+BenchmarkFib/(N=10)-4        	 3823347	       312.1 ns/op
+BenchmarkFib/(N=10)-4        	 3795366	       314.6 ns/op
+BenchmarkFib/(N=10)-4        	 3953557	       315.2 ns/op
+BenchmarkFib/(N=10)-4        	 3787389	       304.8 ns/op
+BenchmarkFib/(N=15)
+BenchmarkFib/(N=15)-4        	  296413	      3515 ns/op
+BenchmarkFib/(N=15)-4        	  395346	      3502 ns/op
+BenchmarkFib/(N=15)-4        	  329703	      3696 ns/op
+BenchmarkFib/(N=15)-4        	  396825	      3675 ns/op
+BenchmarkFib/(N=15)-4        	  297205	      3539 ns/op
+BenchmarkFib/(N=20)
+BenchmarkFib/(N=20)-4        	   31227	     39019 ns/op
+BenchmarkFib/(N=20)-4        	   29605	     40010 ns/op
+BenchmarkFib/(N=20)-4        	   31189	     39020 ns/op
+BenchmarkFib/(N=20)-4        	   29662	     39929 ns/op
+BenchmarkFib/(N=20)-4        	   31197	     40336 ns/op
+BenchmarkFib/(N=25)
+BenchmarkFib/(N=25)-4        	    2971	    432492 ns/op
+BenchmarkFib/(N=25)-4        	    2954	    445356 ns/op
+BenchmarkFib/(N=25)-4        	    2374	    428006 ns/op
+BenchmarkFib/(N=25)-4        	    2379	    451517 ns/op
+BenchmarkFib/(N=25)-4        	    2786	    436060 ns/op
+BenchmarkFib/(N=30)
+BenchmarkFib/(N=30)-4        	     262	   4766498 ns/op
+BenchmarkFib/(N=30)-4        	     246	   4809471 ns/op
+BenchmarkFib/(N=30)-4        	     262	   4878188 ns/op
+BenchmarkFib/(N=30)-4        	     250	   4860202 ns/op
+BenchmarkFib/(N=30)-4        	     241	   4756003 ns/op
+PASS
+ok  	ltest	74.087s

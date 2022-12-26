@@ -1,35 +1,10 @@
 package ltest
 
 import (
+	"flag"
+	"os"
 	"testing"
 )
-
-func testFibN(t *testing.T, fib func(int) int, n int, want int) {
-	if got := fib(n); got != want {
-		t.Errorf("Fib(%d) want %d, but got %d", n, want, got)
-	}
-}
-
-func testFib(t *testing.T, fib func(int) int) {
-	cases := []struct {
-		in   int
-		want int
-	}{{0, 0}, {1, 1}, {2, 1}, {3, 2}, {4, 3}, {5, 5}, {6, 8}, {7, 13}}
-
-	for _, v := range cases {
-		if got := fib(v.in); got != v.want {
-			t.Fatalf("Fib(%d) want %d, but got %d", v.in, v.want, got)
-		}
-	}
-}
-
-func TestFibRecursion(t *testing.T) {
-	testFib(t, FibRecursion)
-}
-
-func TestFibIteration(t *testing.T) {
-	testFib(t, FibIteration)
-}
 
 func benchmarkFib(b *testing.B, fib func(int) int, n int) func(*testing.B) {
 	return func(b *testing.B) {
@@ -40,20 +15,35 @@ func benchmarkFib(b *testing.B, fib func(int) int, n int) func(*testing.B) {
 }
 
 func BenchmarkFib(b *testing.B) {
-	b.Run("Iteration(10)", benchmarkFib(b, FibIteration, 10))
-	b.Run("Recursion(10)", benchmarkFib(b, FibRecursion, 10))
-	b.Run("Iteration(30)", benchmarkFib(b, FibIteration, 30))
-	b.Run("Recursion(30)", benchmarkFib(b, FibRecursion, 30))
+	b.Run("(N=2)", benchmarkFib(b, fib, 2))
+	b.Run("(N=3)", benchmarkFib(b, fib, 3))
+	b.Run("(N=4)", benchmarkFib(b, fib, 4))
+	b.Run("(N=5)", benchmarkFib(b, fib, 5))
+	b.Run("(N=10)", benchmarkFib(b, fib, 10))
+	b.Run("(N=15)", benchmarkFib(b, fib, 15))
+	b.Run("(N=20)", benchmarkFib(b, fib, 20))
+	b.Run("(N=25)", benchmarkFib(b, fib, 25))
+	b.Run("(N=30)", benchmarkFib(b, fib, 30))
 }
 
-func BenchmarkFibIteration(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		FibIteration(30)
-	}
-}
+var fib func(int) int
 
-func BenchmarkFibRecursion(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		FibRecursion(30)
+func TestMain(m *testing.M) {
+	// choose the fib function from command line
+	var fibname string
+	flag.StringVar(&fibname, "fibname", "FibIteration",
+		"mandatary. choose a fib func: FibIteration, FibRecursion")
+	flag.Parse()
+
+	fibs := make(map[string](func(int) int))
+	fibs["FibRecursion"] = FibRecursion
+	fibs["FibIteration"] = FibIteration
+	var ok bool
+	fib, ok = fibs[fibname]
+	if !ok {
+		flag.PrintDefaults()
+		return
 	}
+
+	os.Exit(m.Run())
 }
