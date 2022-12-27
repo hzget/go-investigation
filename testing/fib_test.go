@@ -1,3 +1,25 @@
+/*
+This file shows how to use benchmark testing.
+
+Once you update a function, run a benchmark testing.
+Compare the output via benchstat, you got the changes of performance.
+For example:
+
+# go test -v -run='^$' -bench=Fib -count=5 -fibname=FibRecursion > recursion.txt
+# go test -v -run='^$' -bench=Fib -count=5 -fibname=FibIteration > iteration.txt
+# benchstat recursion.txt iteration.txt
+
+name          old time/op  new time/op  delta
+Fib/(N=2)-4   5.00ns ± 3%  2.95ns ± 3%   -40.85%  (p=0.008 n=5+5)
+Fib/(N=3)-4   8.50ns ± 2%  4.58ns ± 1%   -46.04%  (p=0.008 n=5+5)
+Fib/(N=4)-4   15.2ns ± 2%   5.5ns ± 1%   -63.91%  (p=0.008 n=5+5)
+Fib/(N=5)-4   25.5ns ± 2%   5.3ns ± 4%   -79.04%  (p=0.008 n=5+5)
+Fib/(N=10)-4   314ns ± 3%     6ns ± 1%   -97.98%  (p=0.008 n=5+5)
+Fib/(N=15)-4  3.59μs ± 3%  0.01μs ± 4%   -99.74%  (p=0.008 n=5+5)
+Fib/(N=20)-4  39.7μs ± 2%   0.0μs ± 6%   -99.97%  (p=0.008 n=5+5)
+Fib/(N=25)-4   439μs ± 3%     0μs ± 4%  -100.00%  (p=0.008 n=5+5)
+Fib/(N=30)-4  4.81ms ± 1%  0.00ms ± 1%  -100.00%  (p=0.008 n=5+5)
+*/
 package ltest
 
 import (
@@ -5,6 +27,24 @@ import (
 	"os"
 	"testing"
 )
+
+var seq = []int{0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144}
+
+func testFib(t *testing.T, f func(int) int) func(*testing.T) {
+	return func(t *testing.T) {
+		for n, v := range seq {
+			if got := f(n); got != v {
+				t.Fatalf("fib(%d) expects %d, but got %d", n, v, got)
+			}
+		}
+	}
+}
+
+func TestFib(t *testing.T) {
+	t.Run("Recursion", testFib(t, FibRecursion))
+	t.Run("Iteration", testFib(t, FibIteration))
+	t.Run("Fib", testFib(t, Fib))
+}
 
 func benchmarkFib(b *testing.B, fib func(int) int, n int) func(*testing.B) {
 	return func(b *testing.B) {
