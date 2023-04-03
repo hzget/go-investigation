@@ -1,0 +1,16 @@
+goos: windows
+goarch: amd64
+pkg: atomic.go
+cpu: Intel(R) Core(TM) i5-7200U CPU @ 2.50GHz
+BenchmarkIncVisitCount-4   	35843577	        39.09 ns/op	       0 B/op	       0 allocs/op
+BenchmarkIncVisitCount-4   	31033585	        37.37 ns/op	       0 B/op	       0 allocs/op
+BenchmarkIncVisitCount-4   	35450726	        38.04 ns/op	       0 B/op	       0 allocs/op
+BenchmarkIncVisitCount-4   	32251744	        38.06 ns/op	       0 B/op	       0 allocs/op
+BenchmarkIncVisitCount-4   	32189926	        38.30 ns/op	       0 B/op	       0 allocs/op
+BenchmarkIncVisitCount-4   	29584120	        37.87 ns/op	       0 B/op	       0 allocs/op
+BenchmarkIncVisitCount-4   	34663646	        38.99 ns/op	       0 B/op	       0 allocs/op
+BenchmarkIncVisitCount-4   	30749755	        38.05 ns/op	       0 B/op	       0 allocs/op
+BenchmarkIncVisitCount-4   	31902724	        38.34 ns/op	       0 B/op	       0 allocs/op
+BenchmarkIncVisitCount-4   	32344372	        38.04 ns/op	       0 B/op	       0 allocs/op
+PASS
+ok  	atomic.go	17.776s
