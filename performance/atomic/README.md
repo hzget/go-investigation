@@ -11,12 +11,13 @@ resource into N shards with each contains its own instance
 of the cache with a lock. When a goroutine access one shard,
 it will not block other goroutines from accessing to other shards.
 
+The go pkg [context][go context ae1fa08] gives another example.
+From its commit history, we find that it ever improves its
+performance via replacing the mutex lock operation by
+an atomic operation.
+
 [Atomic][go pkg atomic] just adds a lock in the CPU instruction
 level --- a very tiny range of the lock.
-
-The commit history for the go pkg [context][go context ae1fa08]
-shows that it ever improves
-their performance via replacing mutex lock operation by atomic operation.
 
 [main_test.go](./main_test.go) gives a comparison of performance
 between atomic and mutex lock.

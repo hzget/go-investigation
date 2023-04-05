@@ -1,3 +1,8 @@
+/*
+* package main starts a http server that counts nums of the visitors.
+*
+* It gives an example of how atomic operation
+*/
 package main
 
 import (
@@ -23,11 +28,6 @@ func IncVisitCountWithMutex() uint64 {
 }
 
 func VisitCountHandler(w http.ResponseWriter, r *http.Request) {
-	for i := 0; i < 1000000; i++ {
-		for j := 0; j < 2000; j++ {
-			j++
-		}
-	}
 	num := IncVisitCount()
 	//num := IncVisitCountWithMutex()
 	fmt.Fprintf(w, "There have been %d visitors now\n", num)
