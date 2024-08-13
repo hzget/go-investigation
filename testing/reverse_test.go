@@ -1,3 +1,31 @@
+/*
+This file intends to show how to use fuzzing testing.
+
+Fuzzing is a testing technique where a function is called with
+randomly generated inputs to find bugs not anticipated
+by unit tests.
+
+Links: https://go.dev/doc/tutorial/fuzz
+
+We try to reverse a string of characters as an example. And we
+expect that the result is a string of valid Unicode characters.
+
+Fuzzing helps to generate unanticipated cases and report bugs,
+and then we modifiy code and re-test it --- it evolves.
+
+Reverse1:
+
+	can reverse "abc", "hello", etc. Fuzzing reports cases that
+	the reversed string contains invalid Unicode chars.
+
+Reverse2:
+
+	can reverse "你好" correctly. Fuzzing reports cases that
+	the original string contains invalid Unicode chars.
+
+Reverse3: avoid reversing invalid utf8 characters
+Reverse: wrap specific version and run a fuzzing test
+*/
 package ltest
 
 import (
